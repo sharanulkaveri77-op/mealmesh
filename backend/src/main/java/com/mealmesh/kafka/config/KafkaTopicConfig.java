@@ -85,4 +85,14 @@ public class KafkaTopicConfig {
                 .replicas(1)
                 .build();
     }
+
+    @Bean
+    public org.springframework.kafka.core.KafkaAdmin kafkaAdmin() {
+        java.util.Map<String, Object> configs = new java.util.HashMap<>();
+        configs.put(org.apache.kafka.clients.admin.AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, 
+                System.getenv().getOrDefault("SPRING_KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
+        org.springframework.kafka.core.KafkaAdmin admin = new org.springframework.kafka.core.KafkaAdmin(configs);
+        admin.setFatalIfBrokerNotAvailable(false);
+        return admin;
+    }
 }
