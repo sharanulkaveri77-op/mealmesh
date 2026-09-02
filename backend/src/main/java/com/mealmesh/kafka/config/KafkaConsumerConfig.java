@@ -51,11 +51,15 @@ public class KafkaConsumerConfig {
         return factory;
     }
 
+    @Value("${spring.kafka.listener.auto-startup:false}")
+    private boolean autoStartup;
+
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setConcurrency(3);
+        factory.setAutoStartup(autoStartup);
         factory.getContainerProperties().setAckMode(org.springframework.kafka.listener.ContainerProperties.AckMode.MANUAL_IMMEDIATE);
         
         // Error handler with retry and DLQ

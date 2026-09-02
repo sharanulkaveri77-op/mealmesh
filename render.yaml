@@ -6,8 +6,10 @@ services:
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     plan: free
-    healthCheckPath: /actuator/health
+    healthCheckPath: /api/actuator/health
     envVars:
+      - key: PORT
+        value: "8080"
       - key: SPRING_DATASOURCE_URL
         fromDatabase:
           name: mealmesh-db
