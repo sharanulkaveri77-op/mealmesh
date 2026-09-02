@@ -1,0 +1,18 @@
+package com.mealmesh.notification.entity;
+
+public enum NotificationType {
+    ORDER_CREATED,
+    ORDER_ACCEPTED,
+    ORDER_PREPARING,
+    ORDER_READY,
+    ORDER_PICKED_UP,
+    ORDER_OUT_FOR_DELIVERY,
+    ORDER_DELIVERED,
+    ORDER_CANCELLED,
+    PAYMENT_SUCCESS,
+    PAYMENT_FAILED,
+    DELIVERY_ASSIGNED,
+    COUPON_APPLIED,
+    REVIEW_RECEIVED,
+    SYSTEM_ALERT
+}

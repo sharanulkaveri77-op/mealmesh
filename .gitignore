@@ -1,0 +1,30 @@
+# Dependencies & Builds
+target/
+**/target/
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+*.log
+logs/
+
+# IDE & Editor
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+
+# Vite / Frontend cache
+.vite/
+**/.vite/
