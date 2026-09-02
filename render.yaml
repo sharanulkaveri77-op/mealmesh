@@ -14,12 +14,12 @@ services:
           property: connectionString
       - key: SPRING_REDIS_HOST
         fromService:
-          type: redis
+          type: keyvalue
           name: mealmesh-redis
           property: host
       - key: SPRING_REDIS_PORT
         fromService:
-          type: redis
+          type: keyvalue
           name: mealmesh-redis
           property: port
       - key: APP_JWT_SECRET
@@ -29,11 +29,11 @@ services:
       - key: SPRING_FLYWAY_ENABLED
         value: "true"
 
-  # Managed Redis Cache
-  - type: redis
+  # Managed Key-Value / Redis Cache
+  - type: keyvalue
     name: mealmesh-redis
     plan: free
-    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []
 
 # Managed PostgreSQL Database
 databases:
