@@ -1,6 +1,8 @@
 spring:
   application:
     name: mealmesh-backend
+  main:
+    allow-bean-definition-overriding: true
   
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/mealmesh}

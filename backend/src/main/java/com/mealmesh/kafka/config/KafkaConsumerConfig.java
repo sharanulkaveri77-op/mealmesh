@@ -9,6 +9,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
@@ -22,11 +23,20 @@ import java.util.Map;
 @EnableKafka
 public class KafkaConsumerConfig {
 
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+
     @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
     private String bootstrapServers;
 
     @Value("${spring.kafka.consumer.group-id:mealmesh-group}")
     private String groupId;
+
+    @Value("${spring.kafka.listener.auto-startup:false}")
+    private boolean autoStartup;
+
+    public KafkaConsumerConfig(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
@@ -51,9 +61,6 @@ public class KafkaConsumerConfig {
         return factory;
     }
 
-    @Value("${spring.kafka.listener.auto-startup:false}")
-    private boolean autoStartup;
-
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
@@ -62,37 +69,14 @@ public class KafkaConsumerConfig {
         factory.setAutoStartup(autoStartup);
         factory.getContainerProperties().setAckMode(org.springframework.kafka.listener.ContainerProperties.AckMode.MANUAL_IMMEDIATE);
         
-        // Error handler with retry and DLQ
+        // Error handler with retry and DLQ using injected KafkaTemplate
         DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(
-                kafkaTemplate(), (record, ex) -> new org.apache.kafka.common.TopicPartition("mealmesh.dlq", -1)
+                kafkaTemplate, (record, ex) -> new org.apache.kafka.common.TopicPartition("mealmesh.dlq", -1)
         );
         DefaultErrorHandler errorHandler = new DefaultErrorHandler(recoverer, new FixedBackOff(2000L, 3));
         errorHandler.addRetryableExceptions(Exception.class);
         factory.setCommonErrorHandler(errorHandler);
 
         return factory;
-    }
-
-    @Bean
-    public org.springframework.kafka.core.KafkaTemplate<String, Object> kafkaTemplate() {
-        return new org.springframework.kafka.core.KafkaTemplate<>(producerFactory());
-    }
-
-    @Bean
-    public org.springframework.kafka.core.ProducerFactory<String, Object> producerFactory() {
-        Map<String, Object> configProps = new HashMap<>();
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, org.apache.kafka.common.serialization.StringSerializer.class);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, org.springframework.kafka.support.serializer.JsonSerializer.class);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.ACKS_CONFIG, "all");
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.RETRIES_CONFIG, 3);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, 5);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.LINGER_MS_CONFIG, 5);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.BATCH_SIZE_CONFIG, 16384);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
-        configProps.put(org.apache.kafka.clients.producer.ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
-        return new org.springframework.kafka.core.DefaultKafkaProducerFactory<>(configProps);
     }
 }
