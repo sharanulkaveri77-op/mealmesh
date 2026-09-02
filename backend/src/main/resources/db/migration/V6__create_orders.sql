@@ -16,7 +16,7 @@ CREATE TYPE order_status AS ENUM (
 );
 
 CREATE TABLE orders (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_number VARCHAR(50) NOT NULL UNIQUE,
     customer_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
     restaurant_id UUID NOT NULL REFERENCES restaurants(id) ON DELETE RESTRICT,
@@ -47,7 +47,7 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE order_items (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_id UUID NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
     menu_item_id UUID NOT NULL REFERENCES menu_items(id) ON DELETE RESTRICT,
     menu_item_name VARCHAR(255) NOT NULL,

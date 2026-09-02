@@ -1,5 +1,5 @@
 CREATE TABLE restaurants (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     owner_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
     name VARCHAR(255) NOT NULL,
     description TEXT,
@@ -24,7 +24,7 @@ CREATE TABLE restaurants (
 );
 
 CREATE TABLE restaurant_addresses (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     restaurant_id UUID NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
     label VARCHAR(50),
     street_address VARCHAR(500) NOT NULL,

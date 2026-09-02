@@ -1,5 +1,5 @@
 CREATE TABLE payments (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_id UUID NOT NULL UNIQUE REFERENCES orders(id) ON DELETE CASCADE,
     payment_idempotency_key VARCHAR(100) NOT NULL UNIQUE,
     amount DECIMAL(12,2) NOT NULL,

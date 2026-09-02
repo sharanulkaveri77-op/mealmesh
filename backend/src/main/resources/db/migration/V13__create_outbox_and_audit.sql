@@ -1,5 +1,5 @@
 CREATE TABLE outbox_events (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     aggregate_type VARCHAR(100) NOT NULL,
     aggregate_id UUID NOT NULL,
     event_type VARCHAR(100) NOT NULL,
@@ -18,7 +18,7 @@ CREATE INDEX idx_outbox_events_created_at ON outbox_events(created_at);
 CREATE INDEX idx_outbox_events_event_type ON outbox_events(event_type);
 
 CREATE TABLE audit_logs (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     entity_type VARCHAR(100) NOT NULL,
     entity_id UUID NOT NULL,
     action VARCHAR(50) NOT NULL,
