@@ -144,7 +144,7 @@ class ReviewServiceTest {
     @DisplayName("createReview should throw exception if order is not DELIVERED")
     void createReview_notDelivered() {
         // Arrange
-        order.setStatus(OrderStatus.CONFIRMED);
+        order.setStatus(OrderStatus.PAYMENT_CONFIRMED);
         ReviewCreateRequest request = ReviewCreateRequest.builder()
                 .orderId(orderId)
                 .rating(5)

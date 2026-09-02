@@ -7,7 +7,7 @@ ENV MAVEN_OPTS="-Xmx1024m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 COPY pom.xml .
 COPY src ./src
 
-RUN mvn package -DskipTests -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+RUN mvn package -Dmaven.test.skip=true -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 
 # Stage 2: Runtime stage with Java 21 JRE
 FROM eclipse-temurin:21-jre-alpine

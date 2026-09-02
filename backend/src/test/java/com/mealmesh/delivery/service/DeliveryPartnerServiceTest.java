@@ -102,7 +102,7 @@ class DeliveryPartnerServiceTest {
                 .customer(user)
                 .restaurant(restaurant)
                 .status(OrderStatus.READY_FOR_PICKUP)
-                .deliveryAddress("42 Market Street")
+                .deliveryAddressSnapshot("42 Market Street")
                 .build();
 
         assignment = DeliveryAssignment.builder()
