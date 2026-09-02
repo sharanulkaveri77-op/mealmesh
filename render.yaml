@@ -3,9 +3,9 @@ services:
   - type: web
     name: mealmesh-backend
     runtime: docker
-    dockerfilePath: backend/Dockerfile
-    dockerContext: backend
-    plan: starter
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
     healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_DATASOURCE_URL
@@ -29,15 +29,15 @@ services:
       - key: SPRING_FLYWAY_ENABLED
         value: "true"
 
+  # Managed Redis Cache
+  - type: redis
+    name: mealmesh-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+
 # Managed PostgreSQL Database
 databases:
   - name: mealmesh-db
     plan: free
     databaseName: mealmesh
     user: mealmesh
-
-# Managed Redis Cache
-redis:
-  - name: mealmesh-redis
-    plan: free
-    maxmemoryPolicy: allkeys-lru
