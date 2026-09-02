@@ -1,5 +1,5 @@
-# Stage 1: Build stage
-FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
+# Stage 1: Build stage with Java 21 JDK
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
 WORKDIR /build
 
 ENV MAVEN_OPTS="-Xmx1024m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
@@ -9,8 +9,8 @@ COPY src ./src
 
 RUN mvn package -DskipTests -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 
-# Stage 2: Runtime stage
-FROM eclipse-temurin:17-jre-alpine
+# Stage 2: Runtime stage with Java 21 JRE
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 RUN addgroup -S mealmesh && adduser -S mealmesh -G mealmesh
