@@ -1,0 +1,43 @@
+services:
+  # Spring Boot Backend Web Service
+  - type: web
+    name: mealmesh-backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: starter
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: mealmesh-db
+          property: connectionString
+      - key: SPRING_REDIS_HOST
+        fromService:
+          type: redis
+          name: mealmesh-redis
+          property: host
+      - key: SPRING_REDIS_PORT
+        fromService:
+          type: redis
+          name: mealmesh-redis
+          property: port
+      - key: APP_JWT_SECRET
+        generateValue: true
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: validate
+      - key: SPRING_FLYWAY_ENABLED
+        value: "true"
+
+# Managed PostgreSQL Database
+databases:
+  - name: mealmesh-db
+    plan: free
+    databaseName: mealmesh
+    user: mealmesh
+
+# Managed Redis Cache
+redis:
+  - name: mealmesh-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
