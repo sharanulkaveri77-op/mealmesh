@@ -42,6 +42,6 @@ CREATE TABLE restaurant_addresses (
 CREATE INDEX idx_restaurants_owner_id ON restaurants(owner_id);
 CREATE INDEX idx_restaurants_is_active ON restaurants(is_active);
 CREATE INDEX idx_restaurants_is_accepting_orders ON restaurants(is_accepting_orders);
-CREATE INDEX idx_restaurants_cuisine_types ON restaurants USING GIN (cuisine_types::jsonb);
+CREATE INDEX idx_restaurants_cuisine_types ON restaurants USING GIN ((CAST(cuisine_types AS jsonb)));
 CREATE INDEX idx_restaurants_location ON restaurants(latitude, longitude);
 CREATE INDEX idx_restaurant_addresses_restaurant_id ON restaurant_addresses(restaurant_id);
