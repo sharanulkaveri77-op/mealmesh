@@ -26,7 +26,7 @@ services:
       - key: APP_JWT_SECRET
         generateValue: true
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
-        value: validate
+        value: "none"
       - key: SPRING_FLYWAY_ENABLED
         value: "true"
 

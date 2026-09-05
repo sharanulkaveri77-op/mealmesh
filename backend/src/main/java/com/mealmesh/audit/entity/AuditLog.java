@@ -42,7 +42,7 @@ public class AuditLog {
     @Column(name = "new_values", columnDefinition = "jsonb")
     private String newValues;
 
-    @Column(name = "changed_fields")
+    @Column(name = "changed_fields", columnDefinition = "text")
     private String changedFields;
 
     @Column(name = "ip_address")
