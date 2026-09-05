@@ -3,7 +3,7 @@ services:
   - type: web
     name: mealmesh-backend
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: ./Dockerfile
     dockerContext: ./backend
     plan: free
     envVars:

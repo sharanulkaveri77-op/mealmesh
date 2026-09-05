@@ -2,7 +2,7 @@
 FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
 WORKDIR /build
 
-ENV MAVEN_OPTS="-Xmx1024m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+ENV MAVEN_OPTS="-Xms128m -Xmx384m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
 COPY pom.xml .
 COPY src ./src
