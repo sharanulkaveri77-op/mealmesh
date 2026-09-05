@@ -1,5 +1,11 @@
 # 🍽️ MealMesh — Hyper-Scale Food Delivery Platform
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-brightgreen?style=for-the-badge&logo=vercel)](https://mealmesh.vercel.app)
+[![Backend Status](https://img.shields.io/badge/Backend_API-Render-blue?style=for-the-badge&logo=render)](https://mealmesh-backend.onrender.com)
+
+> 🌐 **Live Web Application**: [https://mealmesh.vercel.app](https://mealmesh.vercel.app)  
+> ⚡ **Backend API Endpoint**: [https://mealmesh-backend.onrender.com/api/actuator/health](https://mealmesh-backend.onrender.com/api/actuator/health)
+
 MealMesh is an enterprise-grade, full-stack food delivery and restaurant management ecosystem built with **Spring Boot 3 (Java 17)**, **PostgreSQL 15**, **Redis 7**, **Apache Kafka**, **Docker**, and modern **React (TypeScript + Tailwind CSS + Vite)**.
 
 ---
