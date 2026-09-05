@@ -58,7 +58,7 @@ export function Login() {
                   placeholder="you@example.com"
                   required
                   autoComplete="email"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
                 />
               </div>
             </div>
@@ -75,7 +75,7 @@ export function Login() {
                   placeholder="••••••••"
                   required
                   autoComplete="current-password"
-                  className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
                 />
                 <button
                   type="button"
@@ -89,10 +89,10 @@ export function Login() {
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                <input type="checkbox" className="w-4 h-4 text-[#F4511E] border-gray-300 rounded focus:ring-orange-500" />
                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
               </label>
-              <Link to="/forgot-password" className="text-sm text-blue-600 hover:text-blue-500">
+              <Link to="/forgot-password" className="text-sm text-[#F4511E] hover:text-[#E64A19] font-medium">
                 Forgot password?
               </Link>
             </div>
@@ -105,7 +105,7 @@ export function Login() {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Don't have an account?{' '}
-              <Link to="/register" className="text-blue-600 hover:text-blue-500 font-medium">
+              <Link to="/register" className="text-[#F4511E] hover:text-[#E64A19] font-semibold">
                 Sign up
               </Link>
             </p>

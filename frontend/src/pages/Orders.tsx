@@ -53,14 +53,14 @@ const mockOrders: Order[] = [
 const statusColors: Record<OrderStatus, string> = {
   CREATED: 'bg-gray-100 text-gray-800',
   PAYMENT_PENDING: 'bg-yellow-100 text-yellow-800',
-  PAYMENT_CONFIRMED: 'bg-blue-100 text-blue-800',
+  PAYMENT_CONFIRMED: 'bg-orange-100 text-orange-800',
   RESTAURANT_PENDING: 'bg-purple-100 text-purple-800',
-  RESTAURANT_ACCEPTED: 'bg-blue-100 text-blue-800',
-  PREPARING: 'bg-orange-100 text-orange-800',
-  READY_FOR_PICKUP: 'bg-indigo-100 text-indigo-800',
+  RESTAURANT_ACCEPTED: 'bg-orange-100 text-orange-800',
+  PREPARING: 'bg-amber-100 text-amber-800',
+  READY_FOR_PICKUP: 'bg-amber-100 text-amber-800',
   DELIVERY_PARTNER_ASSIGNED: 'bg-teal-100 text-teal-800',
   PICKED_UP: 'bg-cyan-100 text-cyan-800',
-  OUT_FOR_DELIVERY: 'bg-pink-100 text-pink-800',
+  OUT_FOR_DELIVERY: 'bg-orange-100 text-orange-800',
   DELIVERED: 'bg-green-100 text-green-800',
   CANCELLED: 'bg-red-100 text-red-800',
   PAYMENT_FAILED: 'bg-red-100 text-red-800',
@@ -129,8 +129,8 @@ export function Orders() {
                   <CardContent className="p-6">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 bg-gray-100 rounded-xl flex-shrink-0 flex items-center justify-center">
-                          <TrendingUp className="w-8 h-8 text-gray-400" />
+                        <div className="w-16 h-16 bg-orange-50 rounded-xl flex-shrink-0 flex items-center justify-center">
+                          <TrendingUp className="w-8 h-8 text-[#F4511E]" />
                         </div>
                         <div>
                           <div className="flex items-center gap-3 mb-1">
@@ -151,7 +151,7 @@ export function Orders() {
                               ₹{order.totalAmount}
                             </span>
                             {order.status !== 'DELIVERED' && order.status !== 'CANCELLED' && (
-                              <span className="flex items-center gap-1 text-blue-600 font-medium">
+                              <span className="flex items-center gap-1 text-[#F4511E] font-semibold">
                                 <TrendingUp className="w-4 h-4" />
                                 Track Order
                               </span>
@@ -170,9 +170,9 @@ export function Orders() {
                         <div className="flex items-center">
                           {statusOrder.slice(0, statusOrder.indexOf(order.status) + 1).map((status, idx) => (
                             <div key={status} className="flex items-center">
-                              <div className={`w-3 h-3 rounded-full ${idx <= statusOrder.indexOf(order.status) ? 'bg-blue-600' : 'bg-gray-200'}`} />
+                              <div className={`w-3 h-3 rounded-full ${idx <= statusOrder.indexOf(order.status) ? 'bg-[#F4511E]' : 'bg-gray-200'}`} />
                               {idx < statusOrder.indexOf(order.status) && (
-                                <div className="flex-1 h-0.5 bg-blue-600" />
+                                <div className="flex-1 h-0.5 bg-[#F4511E]" />
                               )}
                               {idx === statusOrder.indexOf(order.status) && (
                                 <div className="flex-1 h-0.5 bg-gray-200" />
@@ -182,7 +182,7 @@ export function Orders() {
                         </div>
                         <div className="flex justify-between mt-2 text-xs text-gray-500">
                           {statusOrder.slice(0, statusOrder.indexOf(order.status) + 1).map((status, idx) => (
-                            <span key={status} className={`w-20 text-center ${idx === statusOrder.indexOf(order.status) ? 'font-medium text-blue-600' : ''}`}>
+                            <span key={status} className={`w-20 text-center ${idx === statusOrder.indexOf(order.status) ? 'font-semibold text-[#F4511E]' : ''}`}>
                               {statusLabels[status].split(' ').slice(-1)[0]}
                             </span>
                           ))}

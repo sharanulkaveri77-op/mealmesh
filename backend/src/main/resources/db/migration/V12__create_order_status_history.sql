@@ -1,8 +1,8 @@
 CREATE TABLE order_status_history (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_id UUID NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-    previous_status order_status,
-    new_status order_status NOT NULL,
+    previous_status VARCHAR(50),
+    new_status VARCHAR(50) NOT NULL,
     changed_by UUID REFERENCES users(id),
     reason VARCHAR(500),
     metadata JSONB DEFAULT '{}',

@@ -6,7 +6,7 @@ CREATE TABLE restaurants (
     phone VARCHAR(20),
     email VARCHAR(255),
     image_url VARCHAR(500),
-    cuisine_types VARCHAR(500) NOT NULL DEFAULT '[]',
+    cuisine_types JSONB NOT NULL DEFAULT '[]'::jsonb,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     is_accepting_orders BOOLEAN NOT NULL DEFAULT TRUE,
     preparation_time_minutes INTEGER DEFAULT 30,
@@ -25,7 +25,8 @@ CREATE TABLE restaurants (
 
 CREATE TABLE restaurant_addresses (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    restaurant_id UUID NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
+    restaurant_id UUID REFERENCES restaurants(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
     label VARCHAR(50),
     street_address VARCHAR(500) NOT NULL,
     city VARCHAR(100) NOT NULL,
@@ -42,6 +43,6 @@ CREATE TABLE restaurant_addresses (
 CREATE INDEX idx_restaurants_owner_id ON restaurants(owner_id);
 CREATE INDEX idx_restaurants_is_active ON restaurants(is_active);
 CREATE INDEX idx_restaurants_is_accepting_orders ON restaurants(is_accepting_orders);
-CREATE INDEX idx_restaurants_cuisine_types ON restaurants USING GIN ((CAST(cuisine_types AS jsonb)));
+CREATE INDEX idx_restaurants_cuisine_types ON restaurants USING GIN (cuisine_types);
 CREATE INDEX idx_restaurants_location ON restaurants(latitude, longitude);
 CREATE INDEX idx_restaurant_addresses_restaurant_id ON restaurant_addresses(restaurant_id);

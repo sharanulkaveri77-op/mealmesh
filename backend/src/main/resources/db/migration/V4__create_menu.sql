@@ -27,7 +27,7 @@ CREATE TABLE menu_items (
     is_available BOOLEAN NOT NULL DEFAULT TRUE,
     is_featured BOOLEAN NOT NULL DEFAULT FALSE,
     display_order INTEGER DEFAULT 0,
-    tags VARCHAR(500) DEFAULT '[]',
+    tags JSONB DEFAULT '[]'::jsonb,
     nutritional_info JSONB,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP

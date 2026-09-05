@@ -79,7 +79,7 @@ export function Profile() {
           <div className="lg:col-span-1">
             <Card>
               <CardContent className="p-6 text-center">
-                <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
+                <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-[#F4511E] to-[#FF6D00] rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-md">
                   {user?.name?.charAt(0).toUpperCase()}
                 </div>
                 <h2 className="text-xl font-bold text-gray-900">{user?.name}</h2>
@@ -110,22 +110,22 @@ export function Profile() {
 
             <Card className="mt-4">
               <CardContent className="p-0">
-                <Link to="/orders" className="flex items-center gap-3 p-4 hover:bg-gray-50">
-                  <Award className="w-5 h-5 text-blue-600" />
+                <Link to="/orders" className="flex items-center gap-3 p-4 hover:bg-orange-50/50 transition-colors">
+                  <Award className="w-5 h-5 text-[#F4511E]" />
                   <div className="flex-1">
                     <p className="font-medium text-gray-900">My Orders</p>
                     <p className="text-sm text-gray-500">View order history</p>
                   </div>
                 </Link>
-                <Link to="/notifications" className="flex items-center gap-3 p-4 hover:bg-gray-50 border-t border-gray-100">
-                  <Mail className="w-5 h-5 text-blue-600" />
+                <Link to="/notifications" className="flex items-center gap-3 p-4 hover:bg-orange-50/50 transition-colors border-t border-gray-100">
+                  <Mail className="w-5 h-5 text-[#F4511E]" />
                   <div className="flex-1">
                     <p className="font-medium text-gray-900">Notifications</p>
                     <p className="text-sm text-gray-500">View your notifications</p>
                   </div>
                 </Link>
-                <Link to="/cart" className="flex items-center gap-3 p-4 hover:bg-gray-50 border-t border-gray-100">
-                  <MapPin className="w-5 h-5 text-blue-600" />
+                <Link to="/cart" className="flex items-center gap-3 p-4 hover:bg-orange-50/50 transition-colors border-t border-gray-100">
+                  <MapPin className="w-5 h-5 text-[#F4511E]" />
                   <div className="flex-1">
                     <p className="font-medium text-gray-900">Cart</p>
                     <p className="text-sm text-gray-500">View your cart</p>
@@ -171,7 +171,7 @@ export function Profile() {
             <Card>
               <CardHeader>
                 <h2 className="text-lg font-semibold flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-blue-600" />
+                  <Shield className="w-5 h-5 text-[#F4511E]" />
                   Security
                 </h2>
               </CardHeader>

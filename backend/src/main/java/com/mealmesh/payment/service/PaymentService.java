@@ -206,7 +206,7 @@ public class PaymentService {
 
     @Transactional(readOnly = true)
     public List<Payment> getPaymentsByOrder(UUID orderId) {
-        return paymentRepository.findByOrderOrderId(orderId)
+        return paymentRepository.findByOrderId(orderId)
                 .map(List::of)
                 .orElse(List.of());
     }

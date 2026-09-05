@@ -69,7 +69,7 @@ export function Register() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
                   required
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
                 />
               </div>
             </div>
@@ -84,7 +84,7 @@ export function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
                 />
               </div>
             </div>
@@ -98,7 +98,7 @@ export function Register() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+91 98765 43210"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
                 />
               </div>
             </div>
@@ -113,7 +113,7 @@ export function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
                 />
                 <button
                   type="button"
@@ -135,7 +135,7 @@ export function Register() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
                 />
               </div>
             </div>
@@ -145,13 +145,13 @@ export function Register() {
                 type="checkbox"
                 id="terms"
                 required
-                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-0.5"
+                className="w-4 h-4 text-[#F4511E] border-gray-300 rounded focus:ring-orange-500 mt-0.5"
               />
               <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
                 I agree to the{' '}
-                <Link to="/terms" className="text-blue-600 hover:text-blue-500">Terms of Service</Link>
+                <Link to="/terms" className="text-[#F4511E] hover:text-[#E64A19] font-medium">Terms of Service</Link>
                 {' '}and{' '}
-                <Link to="/privacy" className="text-blue-600 hover:text-blue-500">Privacy Policy</Link>
+                <Link to="/privacy" className="text-[#F4511E] hover:text-[#E64A19] font-medium">Privacy Policy</Link>
               </label>
             </div>
 
@@ -163,7 +163,7 @@ export function Register() {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Already have an account?{' '}
-              <Link to="/login" className="text-blue-600 hover:text-blue-500 font-medium">
+              <Link to="/login" className="text-[#F4511E] hover:text-[#E64A19] font-semibold">
                 Sign in
               </Link>
             </p>

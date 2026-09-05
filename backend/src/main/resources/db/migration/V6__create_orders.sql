@@ -1,27 +1,10 @@
-CREATE TYPE order_status AS ENUM (
-    'CREATED',
-    'PAYMENT_PENDING',
-    'PAYMENT_CONFIRMED',
-    'RESTAURANT_PENDING',
-    'RESTAURANT_ACCEPTED',
-    'PREPARING',
-    'READY_FOR_PICKUP',
-    'DELIVERY_PARTNER_ASSIGNED',
-    'PICKED_UP',
-    'OUT_FOR_DELIVERY',
-    'DELIVERED',
-    'CANCELLED',
-    'PAYMENT_FAILED',
-    'RESTAURANT_REJECTED'
-);
-
 CREATE TABLE orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_number VARCHAR(50) NOT NULL UNIQUE,
     customer_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
     restaurant_id UUID NOT NULL REFERENCES restaurants(id) ON DELETE RESTRICT,
-    status order_status NOT NULL DEFAULT 'CREATED',
-    previous_status order_status,
+    status VARCHAR(50) NOT NULL DEFAULT 'CREATED',
+    previous_status VARCHAR(50),
     subtotal DECIMAL(12,2) NOT NULL,
     delivery_fee DECIMAL(10,2) NOT NULL DEFAULT 0,
     tax_amount DECIMAL(10,2) NOT NULL DEFAULT 0,

@@ -60,10 +60,10 @@ const statusLabels: Record<OrderStatus, string> = {
 };
 
 const getStatusBadgeColor = (status: OrderStatus) => {
-  if (['CREATED', 'PAYMENT_PENDING', 'PAYMENT_CONFIRMED', 'RESTAURANT_PENDING'].includes(status)) return 'bg-blue-100 text-blue-800';
-  if (['RESTAURANT_ACCEPTED', 'PREPARING', 'READY_FOR_PICKUP'].includes(status)) return 'bg-orange-100 text-orange-800';
+  if (['CREATED', 'PAYMENT_PENDING', 'PAYMENT_CONFIRMED', 'RESTAURANT_PENDING'].includes(status)) return 'bg-orange-100 text-orange-800';
+  if (['RESTAURANT_ACCEPTED', 'PREPARING', 'READY_FOR_PICKUP'].includes(status)) return 'bg-amber-100 text-amber-800';
   if (['DELIVERY_PARTNER_ASSIGNED', 'PICKED_UP'].includes(status)) return 'bg-teal-100 text-teal-800';
-  if (['OUT_FOR_DELIVERY'].includes(status)) return 'bg-pink-100 text-pink-800';
+  if (['OUT_FOR_DELIVERY'].includes(status)) return 'bg-orange-100 text-orange-800';
   if (['DELIVERED'].includes(status)) return 'bg-green-100 text-green-800';
   if (['CANCELLED', 'PAYMENT_FAILED', 'RESTAURANT_REJECTED'].includes(status)) return 'bg-red-100 text-red-800';
   return 'bg-gray-100 text-gray-800';
@@ -112,11 +112,11 @@ export function OrderDetail() {
                     <div key={status} className="relative flex items-start gap-4 mb-6 last:mb-0">
                       <div className="flex-shrink-0 relative z-10">
                         <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                          idx < currentStatusIndex ? 'bg-blue-600 border-blue-600' : 
-                          idx === currentStatusIndex ? 'bg-white border-blue-600' : 'bg-white border-gray-200'
+                          idx < currentStatusIndex ? 'bg-[#F4511E] border-[#F4511E]' : 
+                          idx === currentStatusIndex ? 'bg-white border-[#F4511E]' : 'bg-white border-gray-200'
                         }`}>
                           {idx < currentStatusIndex && <Check className="w-3.5 h-3.5 text-white" />}
-                          {idx === currentStatusIndex && <Circle className="w-2.5 h-2.5 text-blue-600" />}
+                          {idx === currentStatusIndex && <Circle className="w-2.5 h-2.5 text-[#F4511E]" />}
                         </div>
                       </div>
                       <div className="flex-1 min-w-0 pt-1">
@@ -137,7 +137,7 @@ export function OrderDetail() {
                            'Order delivered successfully'}
                         </p>
                         {idx <= currentStatusIndex && (
-                          <p className="text-sm text-blue-600 mt-1">
+                          <p className="text-sm text-[#F4511E] font-medium mt-1">
                             {new Date(Date.parse(mockOrder.createdAt) + idx * 15 * 60000).toLocaleTimeString('en-IN', { 
                               hour: '2-digit', minute: '2-digit' 
                             })}
@@ -191,20 +191,20 @@ export function OrderDetail() {
               <Card>
                 <CardHeader>
                   <h2 className="text-lg font-semibold flex items-center gap-2">
-                    <Truck className="w-5 h-5 text-blue-600" />
+                    <Truck className="w-5 h-5 text-[#F4511E]" />
                     Delivery Partner
                   </h2>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                      <User className="w-8 h-8 text-blue-600" />
+                  <div className="flex items-center gap-4 p-4 bg-orange-50/50 rounded-xl border border-orange-100/50">
+                    <div className="w-16 h-16 bg-[#F4511E] text-white rounded-full flex items-center justify-center font-bold text-xl shadow-sm">
+                      <User className="w-8 h-8 text-white" />
                     </div>
                     <div className="flex-1">
                       <h4 className="font-semibold text-gray-900">{partner.name}</h4>
                       <p className="text-sm text-gray-500">{partner.vehicle}</p>
                       <div className="flex items-center gap-2 mt-1">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                         <span className="text-sm font-medium">{partner.rating}</span>
                       </div>
                     </div>
@@ -213,9 +213,9 @@ export function OrderDetail() {
                       <Button variant="outline" size="sm">Chat</Button>
                     </div>
                   </div>
-                  <div className="mt-4 p-4 bg-blue-50 rounded-xl">
+                  <div className="mt-4 p-4 bg-orange-50/60 rounded-xl border border-orange-100/60">
                     <div className="flex items-center gap-3">
-                      <Truck className="w-6 h-6 text-blue-600" />
+                      <Truck className="w-6 h-6 text-[#F4511E]" />
                       <div>
                         <p className="font-medium text-gray-900">Live Tracking</p>
                         <p className="text-sm text-gray-500">Your order is on the way</p>
@@ -223,7 +223,7 @@ export function OrderDetail() {
                     </div>
                     <div className="mt-3 h-32 bg-gray-100 rounded-lg flex items-center justify-center">
                       <div className="text-center text-gray-400">
-                        <MapPin className="w-8 h-8 mx-auto mb-1" />
+                        <MapPin className="w-8 h-8 mx-auto mb-1 text-gray-400" />
                         <p className="text-sm">Map would appear here</p>
                       </div>
                     </div>
@@ -236,7 +236,7 @@ export function OrderDetail() {
             <Card>
               <CardHeader>
                 <h2 className="text-lg font-semibold flex items-center gap-2">
-                  <CreditCard className="w-5 h-5 text-blue-600" />
+                  <CreditCard className="w-5 h-5 text-[#F4511E]" />
                   Payment Details
                 </h2>
               </CardHeader>
@@ -355,17 +355,17 @@ export function OrderDetail() {
               </Card>
             )}
 
-            <Card className="bg-blue-50 border-blue-100">
+            <Card className="bg-orange-50/70 border-orange-100">
               <CardContent className="pt-0">
                 <div className="p-4">
                   <div className="flex items-center gap-3">
-                    <Shield className="w-6 h-6 text-blue-600" />
+                    <Shield className="w-6 h-6 text-[#F4511E]" />
                     <div>
-                      <p className="font-medium text-blue-900">Order Support</p>
-                      <p className="text-sm text-blue-700">Need help with your order?</p>
+                      <p className="font-medium text-orange-950">Order Support</p>
+                      <p className="text-sm text-orange-800">Need help with your order?</p>
                     </div>
                   </div>
-                  <Button variant="outline" className="w-full mt-3 border-blue-300 text-blue-700 hover:bg-blue-100">
+                  <Button variant="outline" className="w-full mt-3 border-orange-300 text-orange-900 hover:bg-orange-100">
                     Contact Support
                   </Button>
                 </div>

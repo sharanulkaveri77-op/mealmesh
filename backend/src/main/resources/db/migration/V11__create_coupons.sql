@@ -13,7 +13,7 @@ CREATE TABLE coupons (
     valid_from TIMESTAMP WITH TIME ZONE NOT NULL,
     valid_until TIMESTAMP WITH TIME ZONE NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
-    applicable_restaurants UUID[] DEFAULT '{}',
+    applicable_restaurants VARCHAR(500) DEFAULT '[]',
     applicable_cuisines VARCHAR(500) DEFAULT '[]',
     new_users_only BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,

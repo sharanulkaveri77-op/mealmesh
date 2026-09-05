@@ -149,20 +149,20 @@ export function Notifications() {
         <div className="flex gap-2 mb-6">
           <button
             onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium ${
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               filter === 'all' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-white text-gray-700 hover:bg-gray-50'
+                ? 'bg-[#F4511E] text-white shadow-sm' 
+                : 'bg-white text-gray-700 hover:bg-orange-50/50'
             }`}
           >
             All ({notifications.length})
           </button>
           <button
             onClick={() => setFilter('unread')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium ${
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               filter === 'unread' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-white text-gray-700 hover:bg-gray-50'
+                ? 'bg-[#F4511E] text-white shadow-sm' 
+                : 'bg-white text-gray-700 hover:bg-orange-50/50'
             }`}
           >
             Unread ({unreadCount})
@@ -173,7 +173,7 @@ export function Notifications() {
           <Card>
             <CardContent className="py-12">
               <EmptyState
-                icon={<Bell className="w-16 h-16" />}
+                icon={<Bell className="w-16 h-16 text-gray-300" />}
                 title="No notifications"
                 description={filter === 'unread' ? "You're all caught up!" : "You don't have any notifications yet."}
               />
@@ -188,15 +188,15 @@ export function Notifications() {
                   <div
                     key={notification.id}
                     className={`p-4 ${idx !== 0 ? 'border-t border-gray-100' : ''} ${
-                      !notification.isRead ? 'bg-blue-50/30' : ''
-                    } hover:bg-gray-50 transition-colors`}
+                      !notification.isRead ? 'bg-orange-50/40' : ''
+                    } hover:bg-gray-50/80 transition-colors`}
                   >
                     <div className="flex items-start gap-4">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-                        !notification.isRead ? 'bg-blue-100' : 'bg-gray-100'
+                        !notification.isRead ? 'bg-orange-100' : 'bg-gray-100'
                       }`}>
                         <Icon className={`w-5 h-5 ${
-                          !notification.isRead ? 'text-blue-600' : 'text-gray-500'
+                          !notification.isRead ? 'text-[#F4511E]' : 'text-gray-500'
                         }`} />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -204,12 +204,12 @@ export function Notifications() {
                           <div>
                             <div className="flex items-center gap-2">
                               <h3 className={`font-medium ${
-                                !notification.isRead ? 'text-gray-900' : 'text-gray-700'
+                                !notification.isRead ? 'text-gray-900 font-semibold' : 'text-gray-700'
                               }`}>
                                 {notification.title}
                               </h3>
                               {!notification.isRead && (
-                                <span className="w-2 h-2 bg-blue-600 rounded-full" />
+                                <span className="w-2 h-2 bg-[#F4511E] rounded-full" />
                               )}
                             </div>
                             <p className={`text-sm mt-1 ${
@@ -225,7 +225,7 @@ export function Notifications() {
                             {!notification.isRead && (
                               <button
                                 onClick={() => markAsRead(notification.id)}
-                                className="p-1 text-gray-400 hover:text-blue-600"
+                                className="p-1 text-gray-400 hover:text-[#F4511E]"
                                 title="Mark as read"
                               >
                                 <Check className="w-4 h-4" />
@@ -243,7 +243,7 @@ export function Notifications() {
                         {notification.link && (
                           <Link
                             to={notification.link}
-                            className="text-sm text-blue-600 hover:text-blue-700 mt-2 inline-block"
+                            className="text-sm text-[#F4511E] hover:text-[#E64A19] font-medium mt-2 inline-block"
                           >
                             View details →
                           </Link>

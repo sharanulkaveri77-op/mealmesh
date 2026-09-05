@@ -3,10 +3,13 @@ package com.mealmesh.order.service;
 import com.mealmesh.order.entity.OrderStatus;
 import com.mealmesh.common.exception.BadRequestException;
 
+import org.springframework.stereotype.Component;
+
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
 
+@Component
 public class OrderStateMachine {
 
     private static final Map<OrderStatus, Set<OrderStatus>> VALID_TRANSITIONS = new EnumMap<>(OrderStatus.class);

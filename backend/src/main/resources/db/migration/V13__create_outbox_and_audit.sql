@@ -25,8 +25,8 @@ CREATE TABLE audit_logs (
     performed_by UUID REFERENCES users(id),
     old_values JSONB,
     new_values JSONB,
-    changed_fields VARCHAR(500)[],
-    ip_address INET,
+    changed_fields VARCHAR(500),
+    ip_address VARCHAR(45),
     user_agent TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

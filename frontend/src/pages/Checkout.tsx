@@ -61,11 +61,11 @@ export function Checkout() {
               {[1, 2, 3].map((s) => (
                 <div key={s} className="flex items-center">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    step >= s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-500'
+                    step >= s ? 'bg-[#F4511E] text-white shadow-sm' : 'bg-gray-200 text-gray-500'
                   }`}>
                     {step > s ? <Check className="w-4 h-4" /> : s}
                   </div>
-                  {s < 3 && <div className={`w-16 h-0.5 mx-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`} />}
+                  {s < 3 && <div className={`w-16 h-0.5 mx-2 ${step > s ? 'bg-[#F4511E]' : 'bg-gray-200'}`} />}
                 </div>
               ))}
             </div>
@@ -82,7 +82,7 @@ export function Checkout() {
               <Card>
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">1</div>
+                    <div className="w-8 h-8 bg-[#F4511E] text-white rounded-full flex items-center justify-center text-sm font-medium shadow-sm">1</div>
                     <h2 className="text-lg font-semibold">Delivery Address</h2>
                   </div>
                 </CardHeader>
@@ -99,7 +99,7 @@ export function Checkout() {
                         placeholder="House/Flat No., Building, Street, Area, City, State, PIN"
                         required
                         rows={3}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900"
                       />
                     </div>
                     <Input
@@ -127,22 +127,22 @@ export function Checkout() {
               <Card>
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">1</div>
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">2</div>
+                    <div className="w-8 h-8 bg-[#F4511E] text-white rounded-full flex items-center justify-center text-sm font-medium shadow-sm">1</div>
+                    <div className="w-8 h-8 bg-[#F4511E] text-white rounded-full flex items-center justify-center text-sm font-medium shadow-sm">2</div>
                     <h2 className="text-lg font-semibold">Payment Method</h2>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3 mb-6">
                     {paymentMethods.map((method) => (
-                      <label key={method.id} className="flex items-center gap-4 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                      <label key={method.id} className="flex items-center gap-4 p-4 border rounded-xl cursor-pointer hover:bg-orange-50/50 transition-colors">
                         <input
                           type="radio"
                           name="payment"
                           value={method.id}
                           checked={paymentMethod === method.id}
                           onChange={(e) => setPaymentMethod(e.target.value as typeof paymentMethod)}
-                          className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                          className="w-5 h-5 text-[#F4511E] border-gray-300 focus:ring-orange-500"
                         />
                         <method.icon className="w-6 h-6 text-gray-500" />
                         <div>
@@ -172,9 +172,9 @@ export function Checkout() {
               <Card>
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">1</div>
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">2</div>
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">3</div>
+                    <div className="w-8 h-8 bg-[#F4511E] text-white rounded-full flex items-center justify-center text-sm font-medium shadow-sm">1</div>
+                    <div className="w-8 h-8 bg-[#F4511E] text-white rounded-full flex items-center justify-center text-sm font-medium shadow-sm">2</div>
+                    <div className="w-8 h-8 bg-[#F4511E] text-white rounded-full flex items-center justify-center text-sm font-medium shadow-sm">3</div>
                     <h2 className="text-lg font-semibold">Review & Confirm</h2>
                   </div>
                 </CardHeader>
@@ -183,7 +183,7 @@ export function Checkout() {
                     {/* Address */}
                     <div>
                       <h3 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                        <MapPin className="w-5 h-5 text-blue-600" />
+                        <MapPin className="w-5 h-5 text-[#F4511E]" />
                         Delivery Address
                       </h3>
                       <p className="text-gray-600">{address}</p>
@@ -196,7 +196,7 @@ export function Checkout() {
                     {/* Payment */}
                     <div>
                       <h3 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                        <Lock className="w-5 h-5 text-blue-600" />
+                        <Lock className="w-5 h-5 text-[#F4511E]" />
                         Payment Method
                       </h3>
                       <p className="text-gray-600 capitalize">{paymentMethods.find(m => m.id === paymentMethod)?.label}</p>

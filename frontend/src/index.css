@@ -3,6 +3,11 @@
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
   --font-serif: Georgia, serif;
+  --color-primary: #F4511E;
+  --color-primary-hover: #E64A19;
+  --color-secondary: #FF6D00;
+  --color-accent: #FFB300;
+  --color-cream: #FFF8F0;
 }
 
 @layer base {
@@ -10,7 +15,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply text-gray-900 antialiased;
+    @apply text-gray-900 antialiased bg-gray-50/50;
   }
 }
 
@@ -44,17 +49,18 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 rounded-full;
+  @apply bg-orange-200 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400;
+  @apply bg-orange-300;
 }
 
 /* Focus styles */
 *:focus-visible {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  @apply outline-none ring-2 ring-orange-500 ring-offset-2;
 }
+
 
 /* Line clamp utilities */
 .line-clamp-1 {

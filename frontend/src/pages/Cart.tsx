@@ -86,7 +86,7 @@ export function Cart() {
                   <input
                     type="text"
                     placeholder="Enter promo code"
-                    className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-900 placeholder-gray-400"
                   />
                   <Button>Apply</Button>
                 </div>
@@ -167,15 +167,15 @@ export function Cart() {
               <CardContent className="py-4">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div className="flex flex-col items-center gap-1">
-                    <Shield className="w-6 h-6 text-blue-600" />
+                    <Shield className="w-6 h-6 text-[#F4511E]" />
                     <span className="text-xs text-gray-600">Secure Payment</span>
                   </div>
                   <div className="flex flex-col items-center gap-1">
-                    <Truck className="w-6 h-6 text-blue-600" />
+                    <Truck className="w-6 h-6 text-[#F4511E]" />
                     <span className="text-xs text-gray-600">Fast Delivery</span>
                   </div>
                   <div className="flex flex-col items-center gap-1">
-                    <Clock className="w-6 h-6 text-blue-600" />
+                    <Clock className="w-6 h-6 text-[#F4511E]" />
                     <span className="text-xs text-gray-600">Easy Returns</span>
                   </div>
                 </div>

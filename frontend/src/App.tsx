@@ -49,7 +49,7 @@ function OrderSuccess() {
         </div>
         <h1 className="text-3xl font-bold text-green-600 mb-4">Order Placed!</h1>
         <p className="text-gray-600 mb-6">Your order has been confirmed and will be delivered soon.</p>
-        <button onClick={() => window.location.href = '/orders'} className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">View Orders</button>
+        <button onClick={() => window.location.href = '/orders'} className="px-6 py-3 bg-[#F4511E] text-white rounded-lg hover:bg-[#E64A19] font-medium shadow-sm">View Orders</button>
       </div>
     </div>
   );

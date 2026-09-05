@@ -14,8 +14,6 @@ public interface PaymentRepository extends JpaRepository<Payment, UUID> {
 
     Optional<Payment> findByOrder(com.mealmesh.order.entity.Order order);
 
-    Optional<Payment> findByOrderOrderId(UUID orderId);
-
     Optional<Payment> findByPaymentIdempotencyKey(String idempotencyKey);
 
     List<Payment> findByStatus(PaymentStatus status);

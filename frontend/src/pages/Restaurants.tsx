@@ -4,18 +4,20 @@ import { Button, Card, Badge, Skeleton } from '@/components/ui';
 import { RestaurantCard } from '@/components/RestaurantCard';
 import { Search, Filter, MapPin, X } from 'lucide-react';
 import type { Restaurant } from '@/types';
+import { getRestaurantImage } from '@/constants/images';
 
 const mockRestaurants: Restaurant[] = [
-  { id: '1', name: 'Spice Garden', description: 'Authentic North Indian cuisine with modern twists', address: '123 Main Street, Downtown', phone: '+91 98765 43210', imageUrl: undefined, rating: 4.5, cuisineTypes: ['North Indian', 'Mughlai', 'Kebabs'], isActive: true, deliveryFee: 30, minOrderAmount: 200 },
-  { id: '2', name: 'Pizza Palace', description: 'Wood-fired pizzas with fresh ingredients', address: '456 Oak Avenue, Midtown', phone: '+91 98765 43211', imageUrl: undefined, rating: 4.3, cuisineTypes: ['Italian', 'Pizza', 'Pasta'], isActive: true, deliveryFee: 25, minOrderAmount: 150 },
-  { id: '3', name: 'Dragon Wok', description: 'Authentic Chinese and Asian fusion', address: '789 Elm Road, Uptown', phone: '+91 98765 43212', imageUrl: undefined, rating: 4.7, cuisineTypes: ['Chinese', 'Asian', 'Noodles'], isActive: true, deliveryFee: 35, minOrderAmount: 250 },
-  { id: '4', name: 'Burger Barn', description: 'Gourmet burgers and crispy fries', address: '321 Pine Street, Downtown', phone: '+91 98765 43213', imageUrl: undefined, rating: 4.2, cuisineTypes: ['American', 'Burgers', 'Fast Food'], isActive: true, deliveryFee: 20, minOrderAmount: 100 },
-  { id: '5', name: 'Sushi Express', description: 'Fresh sushi and Japanese delicacies', address: '654 Maple Drive, Midtown', phone: '+91 98765 43214', imageUrl: undefined, rating: 4.6, cuisineTypes: ['Japanese', 'Sushi', 'Seafood'], isActive: false, deliveryFee: 40, minOrderAmount: 300 },
-  { id: '6', name: 'Taco Town', description: 'Authentic Mexican street food', address: '987 Cedar Lane, Uptown', phone: '+91 98765 43215', imageUrl: undefined, rating: 4.4, cuisineTypes: ['Mexican', 'Tacos', 'Burritos'], isActive: true, deliveryFee: 30, minOrderAmount: 180 },
-  { id: '7', name: 'Curry House', description: 'Traditional South Indian flavors', address: '147 Birch Street, Downtown', phone: '+91 98765 43216', imageUrl: undefined, rating: 4.4, cuisineTypes: ['South Indian', 'Dosa', 'Idli'], isActive: true, deliveryFee: 25, minOrderAmount: 150 },
-  { id: '8', name: 'Mediterranean Grill', description: 'Fresh Mediterranean and Greek cuisine', address: '258 Spruce Avenue, Midtown', phone: '+91 98765 43217', imageUrl: undefined, rating: 4.5, cuisineTypes: ['Mediterranean', 'Greek', 'Grill'], isActive: true, deliveryFee: 35, minOrderAmount: 200 },
-  { id: '9', name: 'Noodle Bar', description: 'Hand-pulled noodles and Asian soups', address: '369 Willow Road, Uptown', phone: '+91 98765 43218', imageUrl: undefined, rating: 4.3, cuisineTypes: ['Asian', 'Noodles', 'Soup'], isActive: true, deliveryFee: 30, minOrderAmount: 180 },
+  { id: '1', name: 'Spice Garden', description: 'Authentic North Indian cuisine with modern twists', address: '123 Main Street, Downtown', phone: '+91 98765 43210', imageUrl: getRestaurantImage('1'), rating: 4.5, cuisineTypes: ['North Indian', 'Mughlai', 'Kebabs'], isActive: true, deliveryFee: 30, minOrderAmount: 200 },
+  { id: '2', name: 'Pizza Palace', description: 'Wood-fired pizzas with fresh ingredients', address: '456 Oak Avenue, Midtown', phone: '+91 98765 43211', imageUrl: getRestaurantImage('2'), rating: 4.3, cuisineTypes: ['Italian', 'Pizza', 'Pasta'], isActive: true, deliveryFee: 25, minOrderAmount: 150 },
+  { id: '3', name: 'Dragon Wok', description: 'Authentic Chinese and Asian fusion', address: '789 Elm Road, Uptown', phone: '+91 98765 43212', imageUrl: getRestaurantImage('3'), rating: 4.7, cuisineTypes: ['Chinese', 'Asian', 'Noodles'], isActive: true, deliveryFee: 35, minOrderAmount: 250 },
+  { id: '4', name: 'Burger Barn', description: 'Gourmet burgers and crispy fries', address: '321 Pine Street, Downtown', phone: '+91 98765 43213', imageUrl: getRestaurantImage('4'), rating: 4.2, cuisineTypes: ['American', 'Burgers', 'Fast Food'], isActive: true, deliveryFee: 20, minOrderAmount: 100 },
+  { id: '5', name: 'Sushi Express', description: 'Fresh sushi and Japanese delicacies', address: '654 Maple Drive, Midtown', phone: '+91 98765 43214', imageUrl: getRestaurantImage('5'), rating: 4.6, cuisineTypes: ['Japanese', 'Sushi', 'Seafood'], isActive: false, deliveryFee: 40, minOrderAmount: 300 },
+  { id: '6', name: 'Taco Town', description: 'Authentic Mexican street food', address: '987 Cedar Lane, Uptown', phone: '+91 98765 43215', imageUrl: getRestaurantImage('6'), rating: 4.4, cuisineTypes: ['Mexican', 'Tacos', 'Burritos'], isActive: true, deliveryFee: 30, minOrderAmount: 180 },
+  { id: '7', name: 'Curry House', description: 'Traditional South Indian flavors', address: '147 Birch Street, Downtown', phone: '+91 98765 43216', imageUrl: getRestaurantImage('7'), rating: 4.4, cuisineTypes: ['South Indian', 'Dosa', 'Idli'], isActive: true, deliveryFee: 25, minOrderAmount: 150 },
+  { id: '8', name: 'Mediterranean Grill', description: 'Fresh Mediterranean and Greek cuisine', address: '258 Spruce Avenue, Midtown', phone: '+91 98765 43217', imageUrl: getRestaurantImage('8'), rating: 4.5, cuisineTypes: ['Mediterranean', 'Greek', 'Grill'], isActive: true, deliveryFee: 35, minOrderAmount: 200 },
+  { id: '9', name: 'Noodle Bar', description: 'Hand-pulled noodles and Asian soups', address: '369 Willow Road, Uptown', phone: '+91 98765 43218', imageUrl: getRestaurantImage('9'), rating: 4.3, cuisineTypes: ['Asian', 'Noodles', 'Soup'], isActive: true, deliveryFee: 30, minOrderAmount: 180 },
 ];
+
 
 const cuisines = ['North Indian', 'South Indian', 'Chinese', 'Italian', 'Mexican', 'Japanese', 'American', 'Mediterranean', 'Asian', 'Fast Food'];
 
@@ -50,7 +52,7 @@ export function Restaurants() {
       <header className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4">
           <div className="h-16 flex items-center justify-between">
-            <Link to="/" className="text-xl font-bold text-blue-600">MealMesh</Link>
+            <Link to="/" className="text-xl font-bold text-[#F4511E] tracking-tight">MealMesh</Link>
             <div className="flex items-center gap-4">
               <Link to="/cart">
                 <Button variant="ghost" size="sm">Cart (0)</Button>
@@ -76,13 +78,13 @@ export function Restaurants() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search restaurants, cuisines, or dishes..."
-              className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-gray-900 placeholder-gray-400"
             />
           </div>
           
           <div className="flex flex-wrap items-center gap-3">
             <Button variant="outline" size="sm" onClick={() => setShowFilters(!showFilters)}>
-              <Filter className="w-4 h-4 mr-2" />
+              <Filter className="w-4 h-4 mr-2 text-[#F4511E]" />
               Filters
               {selectedCuisines.length > 0 && (
                 <Badge variant="info" className="ml-2">{selectedCuisines.length}</Badge>
@@ -91,7 +93,7 @@ export function Restaurants() {
             
             {selectedCuisines.length > 0 && (
               <Button variant="ghost" size="sm" onClick={clearFilters}>
-                <X className="w-4 h-4 mr-1" />
+                <X className="w-4 h-4 mr-1 text-gray-400" />
                 Clear All
               </Button>
             )}
@@ -106,10 +108,10 @@ export function Restaurants() {
                 <button
                   key={cuisine}
                   onClick={() => toggleCuisine(cuisine)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all ${
                     selectedCuisines.includes(cuisine)
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-[#F4511E] text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-700 hover:bg-orange-50 hover:text-orange-900'
                   }`}
                 >
                   {cuisine}

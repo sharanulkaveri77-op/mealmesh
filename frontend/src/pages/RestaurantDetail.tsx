@@ -4,6 +4,7 @@ import { Button, Card, CardContent, Badge } from '@/components/ui';
 import { Star, MapPin, Clock, Truck, ArrowLeft, Plus, Minus } from 'lucide-react';
 import type { Restaurant, MenuItem } from '@/types';
 import { useCart } from '@/context/CartContext';
+import { getRestaurantImage, DEFAULT_FOOD_FALLBACK } from '@/constants/images';
 
 const mockRestaurant: Restaurant = {
   id: '1',
@@ -11,7 +12,7 @@ const mockRestaurant: Restaurant = {
   description: 'Authentic North Indian cuisine with modern twists. We use fresh ingredients and traditional recipes passed down through generations.',
   address: '123 Main Street, Downtown',
   phone: '+91 98765 43210',
-  imageUrl: undefined,
+  imageUrl: getRestaurantImage('1'),
   rating: 4.5,
   cuisineTypes: ['North Indian', 'Mughlai', 'Kebabs'],
   isActive: true,
@@ -20,15 +21,15 @@ const mockRestaurant: Restaurant = {
 };
 
 const mockMenuItems: MenuItem[] = [
-  { id: '1', restaurantId: '1', categoryId: '1', name: 'Butter Chicken', description: 'Tender chicken in rich tomato butter gravy', price: 320, imageUrl: undefined, isVegetarian: false, isAvailable: true },
-  { id: '2', restaurantId: '1', categoryId: '1', name: 'Paneer Tikka Masala', description: 'Grilled cottage cheese in spiced tomato gravy', price: 280, imageUrl: undefined, isVegetarian: true, isAvailable: true },
-  { id: '3', restaurantId: '1', categoryId: '1', name: 'Dal Makhani', description: 'Slow-cooked black lentils with butter and cream', price: 220, imageUrl: undefined, isVegetarian: true, isAvailable: true },
-  { id: '4', restaurantId: '1', categoryId: '2', name: 'Garlic Naan', description: 'Soft leavened bread with garlic and herbs', price: 60, imageUrl: undefined, isVegetarian: true, isAvailable: true },
-  { id: '5', restaurantId: '1', categoryId: '2', name: 'Butter Naan', description: 'Classic naan brushed with butter', price: 50, imageUrl: undefined, isVegetarian: true, isAvailable: true },
-  { id: '6', restaurantId: '1', categoryId: '3', name: 'Chicken Biryani', description: 'Fragrant basmati rice with spiced chicken', price: 350, imageUrl: undefined, isVegetarian: false, isAvailable: true },
-  { id: '7', restaurantId: '1', categoryId: '3', name: 'Veg Biryani', description: 'Aromatic rice with mixed vegetables', price: 280, imageUrl: undefined, isVegetarian: true, isAvailable: true },
-  { id: '8', restaurantId: '1', categoryId: '4', name: 'Gulab Jamun', description: 'Soft milk solids in rose syrup (2 pcs)', price: 100, imageUrl: undefined, isVegetarian: true, isAvailable: true },
-  { id: '9', restaurantId: '1', categoryId: '4', name: 'Kulfi', description: 'Traditional Indian ice cream', price: 120, imageUrl: undefined, isVegetarian: true, isAvailable: true },
+  { id: '1', restaurantId: '1', categoryId: '1', name: 'Butter Chicken', description: 'Tender chicken in rich tomato butter gravy', price: 320, imageUrl: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80', isVegetarian: false, isAvailable: true },
+  { id: '2', restaurantId: '1', categoryId: '1', name: 'Paneer Tikka Masala', description: 'Grilled cottage cheese in spiced tomato gravy', price: 280, imageUrl: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80', isVegetarian: true, isAvailable: true },
+  { id: '3', restaurantId: '1', categoryId: '1', name: 'Dal Makhani', description: 'Slow-cooked black lentils with butter and cream', price: 220, imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80', isVegetarian: true, isAvailable: true },
+  { id: '4', restaurantId: '1', categoryId: '2', name: 'Garlic Naan', description: 'Soft leavened bread with garlic and herbs', price: 60, imageUrl: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=600&q=80', isVegetarian: true, isAvailable: true },
+  { id: '5', restaurantId: '1', categoryId: '2', name: 'Butter Naan', description: 'Classic naan brushed with butter', price: 50, imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80', isVegetarian: true, isAvailable: true },
+  { id: '6', restaurantId: '1', categoryId: '3', name: 'Chicken Biryani', description: 'Fragrant basmati rice with spiced chicken', price: 350, imageUrl: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80', isVegetarian: false, isAvailable: true },
+  { id: '7', restaurantId: '1', categoryId: '3', name: 'Veg Biryani', description: 'Aromatic rice with mixed vegetables', price: 280, imageUrl: 'https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?auto=format&fit=crop&w=600&q=80', isVegetarian: true, isAvailable: true },
+  { id: '8', restaurantId: '1', categoryId: '4', name: 'Gulab Jamun', description: 'Soft milk solids in rose syrup (2 pcs)', price: 100, imageUrl: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80', isVegetarian: true, isAvailable: true },
+  { id: '9', restaurantId: '1', categoryId: '4', name: 'Kulfi', description: 'Traditional Indian ice cream', price: 120, imageUrl: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=600&q=80', isVegetarian: true, isAvailable: true },
 ];
 
 const categories = [
@@ -90,22 +91,23 @@ export function RestaurantDetail() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Image & Info */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                {mockRestaurant.imageUrl ? (
-                  <img src={mockRestaurant.imageUrl} alt={mockRestaurant.name} className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                )}
+              <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden relative shadow-sm">
+                <img 
+                  src={mockRestaurant.imageUrl || getRestaurantImage('1')} 
+                  alt={mockRestaurant.name} 
+                  className="w-full h-full object-cover" 
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = DEFAULT_FOOD_FALLBACK;
+                  }}
+                />
                 {!mockRestaurant.isActive && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] flex items-center justify-center">
                     <Badge variant="danger" className="text-lg px-6 py-3">Currently Closed</Badge>
                   </div>
                 )}
               </div>
+
 
               <div className="flex flex-wrap items-center gap-4">
                 <div className="flex items-center gap-2">
@@ -218,8 +220,8 @@ export function RestaurantDetail() {
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                   activeCategory === category.id
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
+                    ? 'bg-[#F4511E] text-white shadow-sm'
+                    : 'text-gray-600 hover:bg-orange-50 hover:text-orange-900'
                 }`}
               >
                 {category.name}
@@ -232,15 +234,15 @@ export function RestaurantDetail() {
             {categoryItems.map((item) => (
               <div key={item.id} className="bg-white rounded-xl border border-gray-100 p-4 flex gap-4">
                 <div className="w-24 h-24 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden relative">
-                  {item.imageUrl ? (
-                    <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                      </svg>
-                    </div>
-                  )}
+                  <img 
+                    src={item.imageUrl || DEFAULT_FOOD_FALLBACK} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover" 
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = DEFAULT_FOOD_FALLBACK;
+                    }}
+                  />
                   {!item.isAvailable && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                       <span className="text-white text-xs font-medium px-2 py-1 bg-red-600 rounded">Unavailable</span>
